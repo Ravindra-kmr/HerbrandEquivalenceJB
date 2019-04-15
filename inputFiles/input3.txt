@@ -1,0 +1,5 @@
+w = 2+1;
+loop: t = x + 1;
+x = t;
+jump loop;
+m = 1;

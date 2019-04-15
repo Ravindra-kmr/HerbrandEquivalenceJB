@@ -1,0 +1,8 @@
+read(x);
+l2: if() jump l1;
+x+2;
+jump exit;
+l1: x*1;
+exit: x = y;
+if() jump l2;
+x+y;

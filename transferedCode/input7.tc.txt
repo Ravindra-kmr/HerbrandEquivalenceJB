@@ -1,0 +1,8 @@
+x = 1;
+1 + 1;
+x + y;
+s =z;
+loop: x + 1;
+x = t;
+jump loop;
+w = x;

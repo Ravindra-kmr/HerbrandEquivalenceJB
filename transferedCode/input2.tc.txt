@@ -1,0 +1,13 @@
+x = 1;
+1 + 1;
+x + y;
+_V408=x + y;
+if (x < 3) jump else;
+z = 3;
+jump exit;
+else: read(z);
+exit: s =_V408;
+loop: x + 1;
+x = t;
+jump loop;
+w = x;

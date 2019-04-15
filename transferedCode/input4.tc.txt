@@ -1,0 +1,7 @@
+1+2;
+read(x);
+if(x < z) jump l1;
+z + 2;
+jump exit;
+l1: x+1;
+exit: 
