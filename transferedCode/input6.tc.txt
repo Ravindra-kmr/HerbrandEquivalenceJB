@@ -1,7 +1,7 @@
 x=5;
 l1: if() jump l2;
 jump exit;
-l2: x+1;
+l2: t =x+1;
 x=t;
 jump l1;
 exit: 

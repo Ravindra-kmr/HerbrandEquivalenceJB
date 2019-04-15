@@ -1,5 +1,5 @@
-2+1;
-loop: x + 1;
+w =2+1;
+loop: t =x + 1;
 x = t;
 jump loop;
 m = 1;

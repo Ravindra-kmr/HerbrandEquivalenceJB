@@ -203,7 +203,7 @@ public class herbrandEquivalence extends dataFlowFramework
 		// {	partitionNum = 0;
 		// }
 		String outputString = "Inside the printpartion function, Partition no:"+partitionNum+"\n";
-		System.out.println("Inside the printpartion function, Partition no:"+partitionNum);
+		// System.out.println("Inside the printpartion function, Partition no:"+partitionNum);
 //		for(int i = 0; i < this.listofVariableUConstant.size(); i++)
 //		{
 //			System.out.print(this.listofVariableUConstant.get(i)+" ");
@@ -252,7 +252,7 @@ public class herbrandEquivalence extends dataFlowFramework
 				if(i<this.listofVariableUConstant.size())
 				{
 					outputString = outputString + "{"+this.listofVariableUConstant.get(i)+",";
-					System.out.print("{"+this.listofVariableUConstant.get(i)+",");
+					// System.out.print("{"+this.listofVariableUConstant.get(i)+",");
 				}
 				else
 				{
@@ -263,7 +263,7 @@ public class herbrandEquivalence extends dataFlowFramework
 					temp = temp % this.listofVariableUConstant.size();
 					int rightOperandIndex = temp;
 					outputString = outputString + "{"+this.listofVariableUConstant.get(leftOperandIndex)+this.operators.get(operatorIndex)+this.listofVariableUConstant.get(rightOperandIndex)+",";
-					System.out.print("{"+this.listofVariableUConstant.get(leftOperandIndex)+this.operators.get(operatorIndex)+this.listofVariableUConstant.get(rightOperandIndex)+",");
+					// System.out.print("{"+this.listofVariableUConstant.get(leftOperandIndex)+this.operators.get(operatorIndex)+this.listofVariableUConstant.get(rightOperandIndex)+",");
 				}
 				for(int j = i+1; j < this.numClass ; j++)
 				{
@@ -272,7 +272,7 @@ public class herbrandEquivalence extends dataFlowFramework
 						if(j<this.listofVariableUConstant.size())
 						{
 							outputString = outputString + " "+this.listofVariableUConstant.get(j)+",";
-							System.out.print(" "+this.listofVariableUConstant.get(j)+",");
+							// System.out.print(" "+this.listofVariableUConstant.get(j)+",");
 						}
 						else
 						{
@@ -283,18 +283,18 @@ public class herbrandEquivalence extends dataFlowFramework
 							temp = temp % this.listofVariableUConstant.size();
 							int rightOperandIndex = temp;
 							outputString = outputString + " "+this.listofVariableUConstant.get(leftOperandIndex)+this.operators.get(operatorIndex)+this.listofVariableUConstant.get(rightOperandIndex)+",";
-							System.out.print(" "+this.listofVariableUConstant.get(leftOperandIndex)+this.operators.get(operatorIndex)+this.listofVariableUConstant.get(rightOperandIndex)+",");
+							// System.out.print(" "+this.listofVariableUConstant.get(leftOperandIndex)+this.operators.get(operatorIndex)+this.listofVariableUConstant.get(rightOperandIndex)+",");
 						}
 						termFlag.set(j, true);
 					}
 				}
 				outputString = outputString + "},";
-				System.out.print("},");
+				// System.out.print("},");
 				termFlag.set(i, true);
 			}
 		}
 		logger.info(outputString);
-		System.out.println();
+		// System.out.println();
 //		
 //		
 //		
@@ -340,7 +340,7 @@ public class herbrandEquivalence extends dataFlowFramework
 		this.numClass = this.operators.size()*((int)Math.pow(this.listofVariableUConstant.size(),2))+this.listofVariableUConstant.size();
 		this.numProgramPoints = super.statements.size()+1;
 		logger.info("Num of ProgramPoints: "+this.numProgramPoints+" and Num of classes: "+this.numClass);
-		System.out.println("Num of ProgramPoints: "+this.numProgramPoints+" and Num of classes: "+this.numClass);
+		// System.out.println("Num of ProgramPoints: "+this.numProgramPoints+" and Num of classes: "+this.numClass);
 		this.partitions = new ArrayList<ArrayList<termID>>(this.numProgramPoints);
 		for(int i = 0; i < this.numProgramPoints; i++)
 		{
@@ -424,7 +424,7 @@ public class herbrandEquivalence extends dataFlowFramework
 					this.partitions.set(i, this.partitions.get(0));
 				else 
 				{
-					System.out.println("Unknown type statement. "+ super.statements.get(i-1));
+					// System.out.println("Unknown type statement. "+ super.statements.get(i-1));
 					logger.error("Unknown type statement. "+ super.statements.get(i-1));
 				}
 				if(!(isSame(oldPartition,this.partitions.get(i))))
@@ -439,7 +439,7 @@ public class herbrandEquivalence extends dataFlowFramework
 				if(i>0 && i <= super.statements.size())
 				{
 					logger.info("Next Statement: "+super.statements.get(i-1));
-					System.out.println(super.statements.get(i-1));
+					// System.out.println(super.statements.get(i-1));
 				}
 				printPartition(i);
 				printEquivalenceClass(i);
@@ -940,7 +940,7 @@ public class herbrandEquivalence extends dataFlowFramework
 				if(i>0 && i <= super.statements.size())
 				{
 					logger.info("Next Statement: "+super.statements.get(i-1));
-					System.out.println(super.statements.get(i-1));
+					// System.out.println(super.statements.get(i-1));
 				}
 				printAvailableExpressions(i);
 			}
@@ -954,9 +954,9 @@ public class herbrandEquivalence extends dataFlowFramework
 		for(int i =0; i<this.availableExpression.get(partitionNum).size();i++)
 		{
 			outputString = outputString + "{"+this.availableExpression.get(partitionNum).get(i)+"}, ";
-			System.out.print("{"+this.availableExpression.get(partitionNum).get(i)+"}, ");
+			// System.out.print("{"+this.availableExpression.get(partitionNum).get(i)+"}, ");
 		}
-		System.out.println();
+		// System.out.println();
 		logger.info(outputString);
 	}
 	public ArrayList<expression> availableExpressionAssignmentStatement(int lineNum, int predLineNo,String lhs,String rhs)
@@ -1084,7 +1084,26 @@ public class herbrandEquivalence extends dataFlowFramework
 	}
 	public void printRedundantExpression(File file)
 	{
-		try {
+		try 
+		{
+			final File redundantExpressionFolder = new File("../redundantExpression");
+			final File transferedCodeFolder = new File("../transferedCode");
+			if(!redundantExpressionFolder.exists())
+			{
+				boolean successfull = redundantExpressionFolder.mkdir();
+				if(!successfull)
+				{
+					logger.fatal("Cannot create "+redundantExpressionFolder.getName()+" folder. Check write permission of current folder.");
+				}
+			}
+			if(!transferedCodeFolder.exists())
+			{
+				boolean successfull = transferedCodeFolder.mkdir();
+				if(!successfull)
+				{
+					logger.fatal("Cannot create "+transferedCodeFolder.getName()+" folder. Check write permission of current folder.");
+				}
+			}
 			String filePathString = file.getAbsolutePath().substring(0,file.getAbsolutePath().lastIndexOf('/')+1);
 			String filenameExtension = file.getName().substring(file.getName().lastIndexOf('.'), file.getName().length());
 			String filename = file.getName().substring(0,file.getName().lastIndexOf('.'));
@@ -1176,14 +1195,14 @@ public class herbrandEquivalence extends dataFlowFramework
 //							foundFlag = true;
 								if(equivalentClass.get(0) < super.statements.size())
 								{
+									redundantExpressionfileWriter.write(String.format("%-20d %-30s %-30s %d\n", (i+1),operand1+this.operators.get(operatorIndex)+operand2,this.listofVariableUConstant.get(equivalentClass.get(0)),this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 									if(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")).trim().equals(this.listofVariableUConstant.get(equivalentClass.get(0))))
 									{
 										break;
 									}
 									outputString.append(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")+1));
-									redundantExpressionfileWriter.write(String.format("%-20d %-30s %-30s %d\n", (i+1),operand1+this.operators.get(operatorIndex)+operand2,this.listofVariableUConstant.get(equivalentClass.get(0)),this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 									outputString.append(this.listofVariableUConstant.get(equivalentClass.get(0)) + ";\n");
-									System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ this.listofVariableUConstant.get(equivalentClass.get(0)) +" "+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
+									// System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ this.listofVariableUConstant.get(equivalentClass.get(0)) +" "+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 								}
 								else 
 								{
@@ -1201,11 +1220,11 @@ public class herbrandEquivalence extends dataFlowFramework
 									outputString = new StringBuffer();
 									outputString.append(tempString1+statementToInsert+tempString2);
 									outputString.append(prefixString+ referredPartition.get(availableExpressionIndexPosition).termValueNum + ";\n");
-									System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ referredPartition.get(availableExpressionIndexPosition).termValueNum +" "+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
+									// System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ referredPartition.get(availableExpressionIndexPosition).termValueNum +" "+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 									
 								}
 								logger.info("{"+operand1+this.operators.get(operatorIndex)+operand2+"} at line number "+ i+" is already computed as {"+this.availableExpression.get(predIndexNum+1).get(j)+"} = " + prefixString+ referredPartition.get(availableExpressionIndexPosition).termValueNum);
-								System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by available class {"+this.availableExpression.get(predIndexNum+1).get(j)+"}");
+								// System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by available class {"+this.availableExpression.get(predIndexNum+1).get(j)+"}");
 								break;
 							}
 //						for(int k=0; k<equivalentClass.size(); k++)
@@ -1230,6 +1249,7 @@ public class herbrandEquivalence extends dataFlowFramework
 						}
 						if(j == this.availableExpression.get(predIndexNum+1).size())
 						{
+							outputString.append(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")+1));
 							outputString.append(rhs+";\n");
 						}
 					}
@@ -1271,7 +1291,9 @@ public class herbrandEquivalence extends dataFlowFramework
 		{
 			if(file.isFile())
 			{
-//				System.out.println(file.getAbsolutePath());
+
+				System.out.println("Now Processing: "+file.getAbsolutePath());
+				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 				herbrandEquivalence herbrandEquivalenceObj = new herbrandEquivalence();
 				PropertyConfigurator.configure("log4j.properties");
 	        	logger.info("Starting to read the file:"+ file.getName());
@@ -1281,18 +1303,24 @@ public class herbrandEquivalence extends dataFlowFramework
 	            logger.debug("Starting to create dataFlow framework:");
 	            herbrandEquivalenceObj.dataFlowGraph();
 	            logger.debug("Successfully created dataFlow framework.");
-	            logger.debug("Creating (variable & constant) and operators list:");
+	            System.out.println("Successfully created dataFlowFramework.");
+	            logger.debug("Creating (variable & constant) and operators list.");
 	            herbrandEquivalenceObj.allVariableUConstant();
 	            logger.debug("Successfully created (variable & constant) and operators list.");
+	            System.out.println("Successfully created (variable & constant) and operators list.");
 	            logger.debug("Starting to compute herbrand Equivalence:");
 	            herbrandEquivalenceObj.computeHerbrandEquivalence();
 	            logger.debug("Successfully computed the herbrand Equivalence.");
+	            System.out.println("Successfully computed the herbrand Equivalence.");
 	            logger.debug("Starting to compute the Available expressions:");
 	            herbrandEquivalenceObj.computeAvailableExpressions();
 	            logger.debug("Successfully computed the available expressions.");
+	            System.out.println("Successfully computed the available expressions.");
 	            logger.debug("Starting to execute printRedundantExpression() function.");
 	            herbrandEquivalenceObj.printRedundantExpression(file);
-	            logger.debug("Successfully executed printRedundantExpression() function.");
+	            logger.debug("Successfully listed redundant expression and transfered Code.");
+	            System.out.println("Successfully listed redundant expression and transfered Code.");
+				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
 			}
 			else if(file.isDirectory())
 			{
@@ -1300,6 +1328,7 @@ public class herbrandEquivalence extends dataFlowFramework
 			}
 		}
 	}
+
 	static Logger logger = Logger.getLogger(herbrandEquivalence.class);
 	public static void main(String[] args)  
 	{
@@ -1309,7 +1338,7 @@ public class herbrandEquivalence extends dataFlowFramework
 		if(!inputFolder.exists())
 		{
 			logger.fatal("Create inputFolder and insert some files.");
-			System.out.println("Create inputFolder and insert some files.");
+			System.out.println("Create inputFolder and insert some input files.");
 			System.exit(0);
 		}
 		if(!redundantExpressionFolder.exists())
