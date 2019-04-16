@@ -971,7 +971,7 @@ public class herbrandEquivalence extends dataFlowFramework
 	        	tempString = tempString + (i+1)+". "+this.statements.get(i) +"\n";
 	        }
 	        redundantExpressionfileWriter.write(tempString);
-			redundantExpressionfileWriter.write(String.format("\n\n%-20s %-30s %-30s %s%n", "Line Number", "Actual Expression", "Replaced With","Line Number"));
+			redundantExpressionfileWriter.write(String.format("\n\n%-20s %-30s %-30s %s%n", "Line Number", "Actual Expression", "Equivalent To","Line Number"));
 			redundantExpressionfileWriter.write("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 			for(int i=0; i<super.statements.size();i++)
 			{
@@ -1039,21 +1039,20 @@ public class herbrandEquivalence extends dataFlowFramework
 							}
 							if(equivalentClass.contains(rhsIndexPosition))
 							{
-								if(equivalentClass.get(0) < super.statements.size())
+								redundantExpressionfileWriter.write(String.format("%-20d %-30s %-30s %d\n", (i+1),operand1+this.operators.get(operatorIndex)+operand2,this.availableExpression.get(predIndexNum+1).get(j),this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
+								if(equivalentClass.get(0) < super.listofVariableUConstant.size())
 								{
-									redundantExpressionfileWriter.write(String.format("%-20d %-30s %-30s %d\n", (i+1),operand1+this.operators.get(operatorIndex)+operand2,this.listofVariableUConstant.get(equivalentClass.get(0)),this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
+									System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ this.listofVariableUConstant.get(equivalentClass.get(0)) +" ");//+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 									if(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")).trim().equals(this.listofVariableUConstant.get(equivalentClass.get(0))))
 									{
 										break;
 									}
 									outputString.append(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")+1));
 									outputString.append(this.listofVariableUConstant.get(equivalentClass.get(0)) + ";\n");
-									// System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ this.listofVariableUConstant.get(equivalentClass.get(0)) +" "+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 								}
 								else 
 								{
 									outputString.append(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")+1));
-									redundantExpressionfileWriter.write(String.format("%-20d %-30s %-30s %d\n", (i+1),operand1+this.operators.get(operatorIndex)+operand2,this.availableExpression.get(predIndexNum+1).get(j),this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 									int temp = this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1;
 									int insertionIndexPosition = outputString.indexOf(";");
 									while(--temp > 0 && insertionIndexPosition != -1)
@@ -1066,32 +1065,12 @@ public class herbrandEquivalence extends dataFlowFramework
 									outputString = new StringBuffer();
 									outputString.append(tempString1+statementToInsert+tempString2);
 									outputString.append(prefixString+ referredPartition.get(availableExpressionIndexPosition).termValueNum + ";\n");
-									// System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ referredPartition.get(availableExpressionIndexPosition).termValueNum +" "+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
+									System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ referredPartition.get(availableExpressionIndexPosition).termValueNum +" "+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 									
 								}
 								logger.info("{"+operand1+this.operators.get(operatorIndex)+operand2+"} at line number "+ i+" is already computed as {"+this.availableExpression.get(predIndexNum+1).get(j)+"} = " + prefixString+ referredPartition.get(availableExpressionIndexPosition).termValueNum);
-								// System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by available class {"+this.availableExpression.get(predIndexNum+1).get(j)+"}");
 								break;
 							}
-//						for(int k=0; k<equivalentClass.size(); k++)
-//						{
-//							int temp=equivalentClass.get(k)-this.listofVariableUConstant.size();
-//							int equivalenceClassOperator = temp/(int)Math.pow(this.listofVariableUConstant.size(), 2);
-//							temp = temp % (int)Math.pow(this.listofVariableUConstant.size(), 2);
-//							int equivalenceClassleftOperandIndex = temp/this.listofVariableUConstant.size();
-//							temp = temp % this.listofVariableUConstant.size();
-//							int equivalenceClassrightOperandIndex = temp;
-//							if(equivalenceClassOperator == operatorIndex && equivalenceClassleftOperandIndex == operand1IndexPosition && equivalenceClassrightOperandIndex == operand2IndexPosition)
-//							{
-//								foundFlag = true;
-//								logger.info("{"+operand1+this.operators.get(operatorIndex)+operand2+"} at line number "+ i+" is already computed as {"+this.availableExpression.get(predIndexNum+1).get(j)+"} = "+ referredPartition.get(equivalentClass.get(k)).termValueNum);
-//								System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by available class {"+this.availableExpression.get(predIndexNum+1).get(j)+"}");
-//								System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ referredPartition.get(equivalentClass.get(k)).termValueNum);
-//								break;
-//							}
-//						}
-//						if(foundFlag == true)
-//							break;
 						}
 						if(j == this.availableExpression.get(predIndexNum+1).size())
 						{
