@@ -1,5 +1,3 @@
-
-
 import java.util.*;
 // 
 // about too much complication by read statements and their effect on increasing valueNum.
@@ -12,7 +10,6 @@ import java.util.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -89,18 +86,14 @@ public class herbrandEquivalence extends dataFlowFramework
 			}
 		}
 		String outputString = "The variable and constants are: \n";
-//		System.out.println("The variable and constants are:");
 		for(int i = 0; i < this.listofVariableUConstant.size(); i++)
 		{
 			outputString = outputString + this.listofVariableUConstant.get(i) + "\n";
-//			System.out.println(this.listofVariableUConstant.get(i));
 		}
 		outputString= outputString + "List of Operators:\n";
-//		System.out.println("List of Operators:");
 		for(int i = 0; i < this.operators.size(); i++)
 		{
 			outputString = outputString + this.operators.get(i) + "\n";
-//			System.out.println(operators.get(i));
 		}
 		logger.info(outputString);
 		logger.debug("Exiting allVariableUConstant function.");
@@ -122,7 +115,6 @@ public class herbrandEquivalence extends dataFlowFramework
 		}
 		public termID()
 		{
-			// super();
 		}
 		public termID(termID id)
 		{
@@ -181,7 +173,6 @@ public class herbrandEquivalence extends dataFlowFramework
 			termID newID = new termID();
 			newID = atomicID();
 			this.partitions.get(partitionNum).add(newID);
-			// System.out.print(this.partitions.get(partitionNum).get(i));
 		}
 		for(int i = 0; i < this.operators.size();i++)
 		{
@@ -199,43 +190,24 @@ public class herbrandEquivalence extends dataFlowFramework
 	}
 	void printPartition(int partitionNum)
 	{
-		// if(this.partitions.get(partitionNum).isEmpty())
-		// {	partitionNum = 0;
-		// }
 		String outputString = "Inside the printpartion function, Partition no:"+partitionNum+"\n";
-		// System.out.println("Inside the printpartion function, Partition no:"+partitionNum);
-//		for(int i = 0; i < this.listofVariableUConstant.size(); i++)
-//		{
-//			System.out.print(this.listofVariableUConstant.get(i)+" ");
-//		}
-//		System.out.println();
 		int count=0;
 		for(int i = 0; i < this.listofVariableUConstant.size(); i++,count++)
 		{
 			outputString = outputString + this.listofVariableUConstant.get(i)+" -> "+this.partitions.get(partitionNum).get(count) + "\n";
-//			System.out.println(this.listofVariableUConstant.get(i)+" -> "+this.partitions.get(partitionNum).get(count));
 		}
 		for(int i = 0; i < this.operators.size();i++)
 		{
-//			int opType = i+1;
 			for(int j = 0; j < this.listofVariableUConstant.size();j++)
 			{
-//				termID left = this.partitions.get(partitionNum).get(j);
 				for(int k = 0; k < this.listofVariableUConstant.size(); k++)
 				{
-//					termID right = this.partitions.get(partitionNum).get(k);
 					outputString = outputString + "("+this.listofVariableUConstant.get(j)+this.operators.get(i)+this.listofVariableUConstant.get(k)+") -> "+this.partitions.get(partitionNum).get(count)+"\n";
-//					System.out.println("("+this.listofVariableUConstant.get(j)+this.operators.get(i)+this.listofVariableUConstant.get(k)+") -> "+this.partitions.get(partitionNum).get(count));
-//					this.partitions.get(partitionNum).add(assignCompoundID(left,right,opType));
 					count++;
 				}
 			}
 		}
 		logger.debug(outputString);
-//		for( i = 0; i < this.partitions.get(partitionNum).size(); i++)
-//		{
-//			System.out.println(this.partitions.get(partitionNum).get(i));
-//		}
 	}
 	void printEquivalenceClass(int partitionNum)
 	{
@@ -252,7 +224,6 @@ public class herbrandEquivalence extends dataFlowFramework
 				if(i<this.listofVariableUConstant.size())
 				{
 					outputString = outputString + "{"+this.listofVariableUConstant.get(i)+",";
-					// System.out.print("{"+this.listofVariableUConstant.get(i)+",");
 				}
 				else
 				{
@@ -263,7 +234,6 @@ public class herbrandEquivalence extends dataFlowFramework
 					temp = temp % this.listofVariableUConstant.size();
 					int rightOperandIndex = temp;
 					outputString = outputString + "{"+this.listofVariableUConstant.get(leftOperandIndex)+this.operators.get(operatorIndex)+this.listofVariableUConstant.get(rightOperandIndex)+",";
-					// System.out.print("{"+this.listofVariableUConstant.get(leftOperandIndex)+this.operators.get(operatorIndex)+this.listofVariableUConstant.get(rightOperandIndex)+",");
 				}
 				for(int j = i+1; j < this.numClass ; j++)
 				{
@@ -272,7 +242,6 @@ public class herbrandEquivalence extends dataFlowFramework
 						if(j<this.listofVariableUConstant.size())
 						{
 							outputString = outputString + " "+this.listofVariableUConstant.get(j)+",";
-							// System.out.print(" "+this.listofVariableUConstant.get(j)+",");
 						}
 						else
 						{
@@ -283,54 +252,15 @@ public class herbrandEquivalence extends dataFlowFramework
 							temp = temp % this.listofVariableUConstant.size();
 							int rightOperandIndex = temp;
 							outputString = outputString + " "+this.listofVariableUConstant.get(leftOperandIndex)+this.operators.get(operatorIndex)+this.listofVariableUConstant.get(rightOperandIndex)+",";
-							// System.out.print(" "+this.listofVariableUConstant.get(leftOperandIndex)+this.operators.get(operatorIndex)+this.listofVariableUConstant.get(rightOperandIndex)+",");
 						}
 						termFlag.set(j, true);
 					}
 				}
 				outputString = outputString + "},";
-				// System.out.print("},");
 				termFlag.set(i, true);
 			}
 		}
 		logger.info(outputString);
-		// System.out.println();
-//		
-//		
-//		
-//		// if(this.partitions.get(partitionNum).isEmpty())
-//		// {	partitionNum = 0;
-//		// }
-//		System.out.println("Inside the printpartion function, Partition no:"+partitionNum);
-//		for(int i = 0; i < this.listofVariableUConstant.size(); i++)
-//		{
-//			System.out.print(this.listofVariableUConstant.get(i)+" ");
-//		}
-//		System.out.println();
-//		int count=0;
-//		for(int i = 0; i < this.listofVariableUConstant.size(); i++,count++)
-//		{
-//			System.out.println(this.listofVariableUConstant.get(i)+" -> "+this.partitions.get(partitionNum).get(count));
-//		}
-//		for(int i = 0; i < this.operators.size();i++)
-//		{
-////			int opType = i+1;
-//			for(int j = 0; j < this.listofVariableUConstant.size();j++)
-//			{
-////				termID left = this.partitions.get(partitionNum).get(j);
-//				for(int k = 0; k < this.listofVariableUConstant.size(); k++)
-//				{
-////					termID right = this.partitions.get(partitionNum).get(k);
-//					System.out.println("("+this.listofVariableUConstant.get(j)+this.operators.get(i)+this.listofVariableUConstant.get(k)+") -> "+this.partitions.get(partitionNum).get(count));
-////					this.partitions.get(partitionNum).add(assignCompoundID(left,right,opType));
-//					count++;
-//				}
-//			}
-//		}
-////		for( i = 0; i < this.partitions.get(partitionNum).size(); i++)
-////		{
-////			System.out.println(this.partitions.get(partitionNum).get(i));
-////		}
 	}
 
 	public void computeHerbrandEquivalence()
@@ -346,21 +276,14 @@ public class herbrandEquivalence extends dataFlowFramework
 		{
 			this.partitions.add(new ArrayList<termID>(this.numClass));
 		}
-		// for(int i = 0; i < this.partitions.size(); i++)
-		// {
-		// 	System.out.println(this.partitions.get(i));
-		// }
 		initialPartition(0);
-//		printPartition(0);
-//		printPartition(1);
 		boolean convergenceFlag=false;
 		while(convergenceFlag == false)
 		{
-//			logger.info("Starting of iteration. ConvergenceFlag:"+convergenceFlag);
 			convergenceFlag = true;
 			for(int i = 1; i < this.numProgramPoints; i++)
 			{
-				ArrayList<termID> oldPartition;// = new ArrayList<termID>();
+				ArrayList<termID> oldPartition;
 				if(this.partitions.get(i).isEmpty())
 					oldPartition = this.partitions.get(0);
 				else
@@ -382,7 +305,6 @@ public class herbrandEquivalence extends dataFlowFramework
 					String lhs = super.statements.get(i-1).substring(0,super.statements.get(i-1).indexOf("=")).trim();
 					String rhs = super.statements.get(i-1).substring(super.statements.get(i-1).indexOf("=")+1,super.statements.get(i-1).length()).trim();
 					ArrayList<termID> temp = new ArrayList<termID>();
-					// System.out.println("dsfaa"+super.predecessorGraph.get(i-1));
 					logger.debug("Calling assignmentStatement() function.");
 					if(super.predecessorGraph.get(i-1).isEmpty())
 					{
@@ -393,15 +315,6 @@ public class herbrandEquivalence extends dataFlowFramework
 						temp = assignmentStatement(super.predecessorGraph.get(i-1).get(0),lhs,rhs);
 					}
 					this.partitions.set(i,temp);
-//					int t=0;
-//					while(t<i)
-//					{
-//							// printPartition(0);
-//							// this.partitions.get(0).get(1).valueNum = 5;
-//						printPartition(t++);
-//
-//					}
-//					printPartition(i);
 				}
 				else if(super.statements.get(i-1).contains("read"))
 				{
@@ -424,7 +337,6 @@ public class herbrandEquivalence extends dataFlowFramework
 					this.partitions.set(i, this.partitions.get(0));
 				else 
 				{
-					// System.out.println("Unknown type statement. "+ super.statements.get(i-1));
 					logger.error("Unknown type statement. "+ super.statements.get(i-1));
 				}
 				if(!(isSame(oldPartition,this.partitions.get(i))))
@@ -439,7 +351,6 @@ public class herbrandEquivalence extends dataFlowFramework
 				if(i>0 && i <= super.statements.size())
 				{
 					logger.info("Next Statement: "+super.statements.get(i-1));
-					// System.out.println(super.statements.get(i-1));
 				}
 				printPartition(i);
 				printEquivalenceClass(i);
@@ -460,9 +371,7 @@ public class herbrandEquivalence extends dataFlowFramework
 		ArrayList<termID> result = new ArrayList<termID>();
 		result.addAll(input);
 		termID newID = atomicID();
-		result.set(this.listofVariableUConstant.indexOf(lhs),newID);//.cloneID(newID);
-		// result.remove(this.listofVariableUConstant.indexOf(lhs));
-		// result.get(0).valueNum = result.get(0).valueNum+5;
+		result.set(this.listofVariableUConstant.indexOf(lhs),newID);
 		for(int i = 0; i < this.operators.size();i++)
 		{
 			int opType = i+1;
@@ -485,14 +394,7 @@ public class herbrandEquivalence extends dataFlowFramework
 						}
 						if(termNum == -1)
 							termNum = increaseTermCounter();
-						// System.out.println("dfs "+i+" "+j+" "+k);
-						// result.get((j+1)*this.listofVariableUConstant.size() + k).cloneID(assignCompoundID(left,right,opType));
-//						termID temp = new termID();
-//						temp.cloneID(assignCompoundID(left,right,opType));
-						result.set(i*(int)Math.pow(this.listofVariableUConstant.size(), 2)+(j+1)*this.listofVariableUConstant.size() + k,assignCompoundID(termNum,left,right,opType));
-						// for(int t =0; t< result.size();t++)
-						// 	System.out.println(result.get(t));
-						
+						result.set(i*(int)Math.pow(this.listofVariableUConstant.size(), 2)+(j+1)*this.listofVariableUConstant.size() + k,assignCompoundID(termNum,left,right,opType));						
 					}
 				}
 			}
@@ -589,6 +491,7 @@ public class herbrandEquivalence extends dataFlowFramework
 		return(confluence(result,input));
 	}
 	*/
+
 	public ArrayList<termID> confluence(ArrayList<termID> partition1, ArrayList<termID> partition2)
 	{	
 		logger.debug("Inside confluence() function.");
@@ -666,29 +569,9 @@ public class herbrandEquivalence extends dataFlowFramework
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		for(int i = 0; i < this.listofVariableUConstant.size(); i++)
 		{
-//			System.out.println(t);
-//			System.out.println(p.get(i));
 			if(t.toString().equals(p.get(i).toString()))
 				result.add(i);
-			// System.out.print(this.partitions.get(partitionNum).get(i));
 		}
-		// int count = this.listofVariableUConstant.size();
-		// for(int i = 0; i < this.operators.size();i++)
-		// {
-		// 	// int opType = i+1;
-		// 	for(int j = 0; j < this.listofVariableUConstant.size();j++)
-		// 	{
-		// 		// termID left = this.partitions.get(partitionNum).get(j);
-		// 		for(int k = 0; k < this.listofVariableUConstant.size(); k++)
-		// 		{
-		// 			if(t.equals(p.get(count)))
-		// 				result.add(count);
-		// 			count++;
-		// 			// termID right = this.partitions.get(partitionNum).get(k);
-		// 			// this.partitions.get(partitionNum).add(assignCompoundID(left,right,opType));
-		// 		}
-		// 	}
-		// }
 		return result;
 	}
 	public ArrayList<termID> assignmentStatement(int predLineIndexNo, String lhs, String rhs)
@@ -700,12 +583,6 @@ public class herbrandEquivalence extends dataFlowFramework
 			input = this.partitions.get(0);
 		else
 			input = this.partitions.get(predLineIndexNo+1);
-		// for(int i = 0; i < input.size(); i++)
-		// {
-		// 	termID newID = new termID();
-		// 	newID.cloneID(input.get(i));
-		// 	result.add(newID);
-		// }
 		result.addAll(input);
 		int rhsIndexPosition;
 		if(rhs.contains("+") || rhs.contains("*"))
@@ -740,12 +617,9 @@ public class herbrandEquivalence extends dataFlowFramework
 		{
 			rhsIndexPosition = this.listofVariableUConstant.indexOf(rhs);
 		}
-		// result.get(this.listofVariableUConstant.indexOf(lhs)).cloneID(input.get(rhsIndexPosition));
 		termID newID = new termID();
 		newID.cloneID(input.get(rhsIndexPosition));
-		result.set(this.listofVariableUConstant.indexOf(lhs),newID);//.cloneID(newID);
-		// result.remove(this.listofVariableUConstant.indexOf(lhs));
-		// result.get(0).valueNum = result.get(0).valueNum+5;
+		result.set(this.listofVariableUConstant.indexOf(lhs),newID);
 		for(int i = 0; i < this.operators.size();i++)
 		{
 			int opType = i+1;
@@ -768,14 +642,7 @@ public class herbrandEquivalence extends dataFlowFramework
 						}
 						if(termNum == -1)
 							termNum = increaseTermCounter();
-						// System.out.println("dfs "+i+" "+j+" "+k);
-						// result.get((j+1)*this.listofVariableUConstant.size() + k).cloneID(assignCompoundID(left,right,opType));
-//						termID temp = new termID();
-//						temp.cloneID(assignCompoundID(left,right,opType));
 						result.set(i*(int)Math.pow(this.listofVariableUConstant.size(), 2)+(j+1)*this.listofVariableUConstant.size() + k,assignCompoundID(termNum,left,right,opType));
-						// for(int t =0; t< result.size();t++)
-						// 	System.out.println(result.get(t));
-						
 					}
 				}
 			}
@@ -789,10 +656,6 @@ public class herbrandEquivalence extends dataFlowFramework
 			return false;
 		for(int i = 0; i < this.numClass; i++)
 		{
-//			if(!p.get(i).toString().equals(q.get(i).toString()))
-//			{
-//				return false;
-//			}
 			ArrayList<Integer> equivalenceClass1 = new ArrayList<Integer>();
 			ArrayList<Integer> equivalenceClass2 = new ArrayList<Integer>();
 			for(int j = 0; j < this.numClass ; j++)
@@ -857,10 +720,7 @@ public class herbrandEquivalence extends dataFlowFramework
 			convergenceFlag = true;
 			for(int i = 1; i < this.numProgramPoints; i++)
 			{
-				ArrayList<expression> oldExressionList;// = new ArrayList<termID>();
-//				if(this.partitions.get(i).isEmpty())
-//					oldPartition = this.partitions.get(0);
-//				else
+				ArrayList<expression> oldExressionList;
 				oldExressionList = this.availableExpression.get(i);
 				if(super.predecessorGraph.get(i-1).size()>1)
 				{
@@ -879,7 +739,6 @@ public class herbrandEquivalence extends dataFlowFramework
 					String lhs = super.statements.get(i-1).substring(0,super.statements.get(i-1).indexOf("=")).trim();
 					String rhs = super.statements.get(i-1).substring(super.statements.get(i-1).indexOf("=")+1,super.statements.get(i-1).length()).trim();
 					ArrayList<expression> temp = new ArrayList<expression>();
-					// System.out.println("dsfaa"+super.predecessorGraph.get(i-1));
 					logger.debug("Calling availableExpressionAssignmentStatement() function. ");
 					if(super.predecessorGraph.get(i-1).isEmpty())
 					{
@@ -890,15 +749,6 @@ public class herbrandEquivalence extends dataFlowFramework
 						temp = availableExpressionAssignmentStatement(i-1,super.predecessorGraph.get(i-1).get(0),lhs,rhs);
 					}
 					this.availableExpression.set(i,temp);
-//					int t=0;
-//					while(t<i)
-//					{
-//							// printPartition(0);
-//							// this.partitions.get(0).get(1).valueNum = 5;
-//						printPartition(t++);
-//
-//					}
-//					printPartition(i);
 				}
 				else if(super.statements.get(i-1).contains("read"))
 				{
@@ -954,9 +804,7 @@ public class herbrandEquivalence extends dataFlowFramework
 		for(int i =0; i<this.availableExpression.get(partitionNum).size();i++)
 		{
 			outputString = outputString + "{"+this.availableExpression.get(partitionNum).get(i)+"}, ";
-			// System.out.print("{"+this.availableExpression.get(partitionNum).get(i)+"}, ");
 		}
-		// System.out.println();
 		logger.info(outputString);
 	}
 	public ArrayList<expression> availableExpressionAssignmentStatement(int lineNum, int predLineNo,String lhs,String rhs)
@@ -1174,7 +1022,6 @@ public class herbrandEquivalence extends dataFlowFramework
 							predIndexNum = -1;
 						}
 						ArrayList<termID> referredPartition = this.partitions.get(predIndexNum+1);
-//					boolean foundFlag = false;
 						for(j = 0; j < this.availableExpression.get(predIndexNum+1).size(); j++)
 						{
 							String availableExpressionLeftOperand =  this.availableExpression.get(predIndexNum+1).get(j).left;
@@ -1192,7 +1039,6 @@ public class herbrandEquivalence extends dataFlowFramework
 							}
 							if(equivalentClass.contains(rhsIndexPosition))
 							{
-//							foundFlag = true;
 								if(equivalentClass.get(0) < super.statements.size())
 								{
 									redundantExpressionfileWriter.write(String.format("%-20d %-30s %-30s %d\n", (i+1),operand1+this.operators.get(operatorIndex)+operand2,this.listofVariableUConstant.get(equivalentClass.get(0)),this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
@@ -1299,7 +1145,6 @@ public class herbrandEquivalence extends dataFlowFramework
 	        	logger.info("Starting to read the file:"+ file.getName());
 	            herbrandEquivalenceObj.readFile(file.getAbsolutePath());
 	            logger.debug("Read the file successfully.");
-	            // herbrandEquivalenceObj.numProgramPoints=herbrandEquivalenceObj.statements.size();
 	            logger.debug("Starting to create dataFlow framework:");
 	            herbrandEquivalenceObj.dataFlowGraph();
 	            logger.debug("Successfully created dataFlow framework.");

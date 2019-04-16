@@ -2,7 +2,6 @@
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
-//import java.io.FileWriter;
 import java.util.*;
 import java.util.regex.*;
 
@@ -15,29 +14,11 @@ public class dataFlowFramework
 	public ArrayList<ArrayList<Integer>> successorGraph;	
 	public ArrayList<ArrayList<Integer>> predecessorGraph;
 	public ArrayList<labelDictionary> labelLineNumberDict;
-	// public static void main(String[] args)
-	// {
-	// 	herbrand herbrandObj = new herbrand();
-	//     try
-	//     {
-	//         statements=new ArrayList<String>();
-	//         if (0 < args.length) 
-	//         {
-	//             statements = herbrandObj.readFile(args[0]);
- //            }
 
- //            else
- //            {
- //               System.err.println("Invalid arguments count:" + args.length);
- //               System.exit(0);
- //            }
- //            successorGraph = herbrandObj.dataFlowGraph(statements);
-	//     }
-	//     catch(Exception Ex)
-	//     {
-	//         System.out.println("Exception occured: " + Ex);
-	//     }
-	// }get linked list java
+	dataFlowFramework()
+	{
+	}
+
 	dataFlowFramework(ArrayList<String> statements,ArrayList<ArrayList<Integer>> successorGraph,ArrayList<ArrayList<Integer>> predecessorGraph,ArrayList<labelDictionary> labelLineNumberDict)
 	{
 		this.statements = statements;
@@ -46,10 +27,6 @@ public class dataFlowFramework
 		this.labelLineNumberDict = labelLineNumberDict;
 	}
 
-	dataFlowFramework()
-	{
-	}
-	
 	public void readFile(String fileName)
 	{
         this.statements=new ArrayList<String>();
@@ -74,11 +51,9 @@ public class dataFlowFramework
 			}
 			br.close();
 			String outputString = "Entered program:\n";
-//			System.out.println("Entered program:");
             for(int i=0;i<this.statements.size();i++)
             {
             	outputString = outputString + (i)+". "+this.statements.get(i) + "\n";
-//                System.out.println((i)+". "+this.statements.get(i));
             }
             logger.info(outputString);
 	    }
@@ -117,9 +92,7 @@ public class dataFlowFramework
 				if(statement.substring(statement.indexOf(":")+1,statement.length()).trim().length() != 0)
 				{
 					this.statements.add(i,statement.substring(0,statement.indexOf(":")).trim());
-					// i=i+1;
 					this.statements.set(i+1,statement.substring(statement.indexOf(":")+1,statement.length()).trim());
-					// statement = this.statements.get(i);
 				}
 				else {
 					this.statements.set(i, statement.substring(0,statement.indexOf(":")).trim());
@@ -127,23 +100,16 @@ public class dataFlowFramework
 			}
 		}
 		String outputString = "Entered Program after preprocessing:\n";
-//		logger.info("Entered Program after preprocessing:");
-		System.out.println("Entered program after preprocessing:");
         for(int i=0;i<this.statements.size();i++)
         {
         	outputString = outputString + (i)+". "+this.statements.get(i) +"\n";
-//        	logger.info((i)+". "+this.statements.get(i));
-            System.out.println((i)+". "+this.statements.get(i));
         }
         logger.info(outputString);
         outputString = "Label Dictionary with line no.:\n";
-//		System.out.println("Label Dictionary with line no.:");
 		for(int i=0;i<this.labelLineNumberDict.size();i++)
         {
 			outputString = outputString + this.labelLineNumberDict.get(i).label + " at " + this.labelLineNumberDict.get(i).lineNum+"\n";
-//			logger.info(this.labelLineNumberDict.get(i).label + " at " + this.labelLineNumberDict.get(i).lineNum);
-//            System.out.println(this.labelLineNumberDict.get(i).label + " at " + this.labelLineNumberDict.get(i).lineNum);
-        }
+		}
         logger.info(outputString);
 
 		for(int i = 0; i < this.statements.size();i++)
@@ -179,40 +145,29 @@ public class dataFlowFramework
 		{
 			for(int j = 0; j < this.successorGraph.get(i).size(); j++)
 			{
-//				System.out.println(this.successorGraph.get(i).get(j));
 				this.predecessorGraph.get(this.successorGraph.get(i).get(j)).add(i);
 			}
 		}
-//		logger.info("successorGraph:");
-//		System.out.println("successorGraph:");
 		outputString="successorGraph:\n";
 		for(int i = 0; i < this.successorGraph.size(); i++)
 		{
 			outputString=outputString + i +". ";
-//			System.out.print(i+". ");
 			for(int j = 0; j < this.successorGraph.get(i).size(); j++)
 			{
 				outputString = outputString + this.successorGraph.get(i).get(j)+" ";
-//				System.out.print(this.successorGraph.get(i).get(j)+" ");
 			}
 			outputString=outputString+"\n";
-//			System.out.println();
 		}
 		logger.info(outputString);
-//		logger.info("PredecessorGraph:");
-//		System.out.println("PredecessorGraph:");
 		outputString="PredecessorGraph:\n";
 		for(int i = 0; i < this.predecessorGraph.size(); i++)
 		{
 			outputString = outputString + i +". ";
-//			System.out.print(i+". ");
 			for(int j = 0; j < this.predecessorGraph.get(i).size(); j++)
 			{
 				outputString=outputString + this.predecessorGraph.get(i).get(j)+" ";
-//				System.out.print(this.predecessorGraph.get(i).get(j)+" ");
 			}
 			outputString=outputString+"\n";
-//			System.out.println();
 		}
 		logger.info(outputString);
 	}
