@@ -1,10 +1,5 @@
 import java.util.*;
 // 
-// about too much complication by read statements and their effect on increasing valueNum.
-//Question: should i start with project report or gvn implementation or should i do this completely(cleaning and add more input files).
-//NPTEL Exam. Got a ticket on 26th but do i need to come back after giving the presentation on 25th.
-//I might not be able to implement the changes suggested by panel at that moment because of preparation for exam. Can I ask panel to give their suggestion before the presenation or can I can work on suggestion after 28th from home.
-//TODO create a nested loop program.
 //TODO create a program which start with a loop.
 //import java.util.regex.*;
 import java.io.File;
@@ -956,7 +951,7 @@ public class herbrandEquivalence extends dataFlowFramework
 			String filenameExtension = file.getName().substring(file.getName().lastIndexOf('.'), file.getName().length());
 			String filename = file.getName().substring(0,file.getName().lastIndexOf('.'));
 			File transferedCodeFile = new File(filePathString+"../"+"transferedCode/"+filename+".tc"+filenameExtension);
-			File redundantExpressionfile = new File(filePathString+"../"+"redundantExpression/"+filename+".rc"+filenameExtension);
+			File redundantExpressionfile = new File(filePathString+"../"+"redundantExpression/"+filename+".re"+filenameExtension);
 			FileWriter transferedCodeFileWriter = new FileWriter(transferedCodeFile,false);
 			FileWriter redundantExpressionfileWriter = new FileWriter(redundantExpressionfile,false);
 			logger.debug("Inside the printRedundantExpression() function.");
@@ -1040,7 +1035,7 @@ public class herbrandEquivalence extends dataFlowFramework
 							if(equivalentClass.contains(rhsIndexPosition))
 							{
 								redundantExpressionfileWriter.write(String.format("%-20d %-30s %-30s %d\n", (i+1),operand1+this.operators.get(operatorIndex)+operand2,this.availableExpression.get(predIndexNum+1).get(j),this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
-								if(equivalentClass.get(0) < super.listofVariableUConstant.size())
+								if(equivalentClass.get(0) < this.listofVariableUConstant.size())
 								{
 									System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ this.listofVariableUConstant.get(equivalentClass.get(0)) +" ");//+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 									if(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")).trim().equals(this.listofVariableUConstant.get(equivalentClass.get(0))))

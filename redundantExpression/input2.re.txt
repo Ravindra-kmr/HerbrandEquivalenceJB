@@ -16,7 +16,7 @@ Entered Program after preprocessing:
 15. w = x
 
 
-Line Number          Actual Expression              Replaced With                  Line Number
+Line Number          Actual Expression              Equivalent To                  Line Number
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 10                   1+y                            x+y                            3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

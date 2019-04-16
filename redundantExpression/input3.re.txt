@@ -1,15 +1,12 @@
 Entered Program after preprocessing:
-1. x=5
-2. l1
-3. if() jump l2
-4. jump exit
-5. l2
-6. t = x+1
-7. x=t
-8. jump l1
-9. exit
+1. w = 2+1
+2. loop
+3. t = x + 1
+4. x = t
+5. jump loop
+6. m = 1
 
 
-Line Number          Actual Expression              Replaced With                  Line Number
+Line Number          Actual Expression              Equivalent To                  Line Number
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
