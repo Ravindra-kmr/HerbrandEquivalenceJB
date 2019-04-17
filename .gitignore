@@ -9,7 +9,8 @@
 
 # output files
 *.tc.txt
-*.rc.txt
+*.re.txt
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

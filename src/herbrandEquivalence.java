@@ -947,6 +947,7 @@ public class herbrandEquivalence extends dataFlowFramework
 					logger.fatal("Cannot create "+transferedCodeFolder.getName()+" folder. Check write permission of current folder.");
 				}
 			}
+			int tempCounter = 0;
 			String filePathString = file.getAbsolutePath().substring(0,file.getAbsolutePath().lastIndexOf('/')+1);
 			String filenameExtension = file.getName().substring(file.getName().lastIndexOf('.'), file.getName().length());
 			String filename = file.getName().substring(0,file.getName().lastIndexOf('.'));
@@ -1048,7 +1049,7 @@ public class herbrandEquivalence extends dataFlowFramework
 								else 
 								{
 									outputString.append(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")+1));
-									int temp = this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1;
+									int temp = this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1+ tempCounter++;
 									int insertionIndexPosition = outputString.indexOf(";");
 									while(--temp > 0 && insertionIndexPosition != -1)
 									{
@@ -1140,10 +1141,6 @@ public class herbrandEquivalence extends dataFlowFramework
 	            logger.debug("Successfully listed redundant expression and transfered Code.");
 	            System.out.println("Successfully listed redundant expression and transfered Code.");
 				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
-			}
-			else if(file.isDirectory())
-			{
-				forEachFile(file);
 			}
 		}
 	}

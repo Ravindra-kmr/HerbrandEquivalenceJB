@@ -6,7 +6,10 @@ import java.util.*;
 import java.util.regex.*;
 
 import org.apache.log4j.Logger;
-
+/**
+ * Class which create dataflow Framework of given program. 
+ * It computes predecessor and successor of each statement.
+ */
 public class dataFlowFramework
 {
 	protected Logger logger = Logger.getLogger(dataFlowFramework.class);
@@ -15,10 +18,16 @@ public class dataFlowFramework
 	public ArrayList<ArrayList<Integer>> predecessorGraph;
 	public ArrayList<labelDictionary> labelLineNumberDict;
 
+	/**
+	 * Initializing empty Constructor.
+	 */
 	dataFlowFramework()
 	{
 	}
 
+	/**
+	 * @param 
+	 */
 	dataFlowFramework(ArrayList<String> statements,ArrayList<ArrayList<Integer>> successorGraph,ArrayList<ArrayList<Integer>> predecessorGraph,ArrayList<labelDictionary> labelLineNumberDict)
 	{
 		this.statements = statements;
@@ -27,6 +36,9 @@ public class dataFlowFramework
 		this.labelLineNumberDict = labelLineNumberDict;
 	}
 
+	/**
+	 * @param 
+	 */
 	public void readFile(String fileName)
 	{
         this.statements=new ArrayList<String>();
