@@ -1,176 +1,179 @@
-Starting to read the file:input4.txt
+Starting to read the file:input1.txt
 Entered program:
-0. z=1+2
-1. read(x)
-2. if(x < z) jump l1
-3. y= z + 2
-4. jump exit
-5. l1: y=x+1
-6. exit:
+0. i = 1
+1. j = i+ 1
+2. j=1
+3. j = 1+ i
+4. j=1+1
+5. k = 1
+6. read(i)
+7. j = 1 + 1
 
 Entered Program after preprocessing:
-0. z=1+2
-1. read(x)
-2. if(x < z) jump l1
-3. y= z + 2
-4. jump exit
-5. l1
-6. y=x+1
-7. exit
+Line Number          Statement
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1                    i = 1
+2                    j = i+ 1
+3                    j=1
+4                    j = 1+ i
+5                    j=1+1
+6                    k = 1
+7                    read(i)
+8                    j = 1 + 1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Label Dictionary with line no.:
-l1 at 5
-exit at 7
 
-successorGraph:
-0. 1 
-1. 2 
-2. 3 5 
-3. 4 
-4. 7 
-5. 6 
-6. 7 
-7. 8 
+
+Label Dictionary with line number:
+Line Number          Label Name
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 
 PredecessorGraph:
-0. 
-1. 0 
-2. 1 
-3. 2 
-4. 3 
-5. 2 
-6. 5 
-7. 4 6 
-8. 7 
+Line Number          Predecessors Line Number
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1                    null
+2                    1 
+3                    2 
+4                    3 
+5                    4 
+6                    5 
+7                    6 
+8                    7 
+9                    8 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The variable and constants are: 
-2
 1
-z
-x
-y
+i
+j
+k
 List of Operators:
 +
 
-Num of ProgramPoints: 9 and Num of classes: 30
+Num of ProgramPoints: 9 and Num of classes: 20
 EquivalenceClasses for partition no.0
-{2,},{1,},{z,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+2,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: z=1+2
+{1,},{i,},{j,},{k,},{1+1,},{1+i,},{1+j,},{1+k,},{i+1,},{i+i,},{i+j,},{i+k,},{j+1,},{j+i,},{j+j,},{j+k,},{k+1,},{k+i,},{k+j,},{k+k,},
+Next Statement: i = 1
 EquivalenceClasses for partition no.1
-{2,},{1,},{z, 1+2,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: read(x)
+{1, i,},{j,},{k,},{1+1, 1+i, i+1, i+i,},{1+j, i+j,},{1+k, i+k,},{j+1, j+i,},{j+j,},{j+k,},{k+1, k+i,},{k+j,},{k+k,},
+Next Statement: j = i+ 1
 EquivalenceClasses for partition no.2
-{2,},{1,},{z, 1+2,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: if(x < z) jump l1
+{1, i,},{j, 1+1, 1+i, i+1, i+i,},{k,},{1+j, i+j,},{1+k, i+k,},{j+1, j+i,},{j+j,},{j+k,},{k+1, k+i,},{k+j,},{k+k,},
+Next Statement: j=1
 EquivalenceClasses for partition no.3
-{2,},{1,},{z, 1+2,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: y= z + 2
+{1, i, j,},{k,},{1+1, 1+i, 1+j, i+1, i+i, i+j, j+1, j+i, j+j,},{1+k, i+k, j+k,},{k+1, k+i, k+j,},{k+k,},
+Next Statement: j = 1+ i
 EquivalenceClasses for partition no.4
-{2,},{1,},{z, 1+2,},{x,},{y, z+2,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: jump exit
+{1, i,},{j, 1+1, 1+i, i+1, i+i,},{k,},{1+j, i+j,},{1+k, i+k,},{j+1, j+i,},{j+j,},{j+k,},{k+1, k+i,},{k+j,},{k+k,},
+Next Statement: j=1+1
 EquivalenceClasses for partition no.5
-{2,},{1,},{z, 1+2,},{x,},{y, z+2,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: l1
+{1, i,},{j, 1+1, 1+i, i+1, i+i,},{k,},{1+j, i+j,},{1+k, i+k,},{j+1, j+i,},{j+j,},{j+k,},{k+1, k+i,},{k+j,},{k+k,},
+Next Statement: k = 1
 EquivalenceClasses for partition no.6
-{2,},{1,},{z, 1+2,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: y=x+1
+{1, i, k,},{j, 1+1, 1+i, 1+k, i+1, i+i, i+k, k+1, k+i, k+k,},{1+j, i+j, k+j,},{j+1, j+i, j+k,},{j+j,},
+Next Statement: read(i)
 EquivalenceClasses for partition no.7
-{2,},{1,},{z, 1+2,},{x,},{y, x+1,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: exit
+{1, k,},{i,},{j, 1+1, 1+k, k+1, k+k,},{1+i, k+i,},{1+j, k+j,},{i+1, i+k,},{i+i,},{i+j,},{j+1, j+k,},{j+i,},{j+j,},
+Next Statement: j = 1 + 1
 EquivalenceClasses for partition no.8
-{2,},{1,},{z, 1+2,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
+{1, k,},{i,},{j, 1+1, 1+k, k+1, k+k,},{1+i, k+i,},{1+j, k+j,},{i+1, i+k,},{i+i,},{i+j,},{j+1, j+k,},{j+i,},{j+j,},
 End of iteration. ConvergenceFlag: false
 				*********************************************************************************				
 EquivalenceClasses for partition no.0
-{2,},{1,},{z,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+2,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: z=1+2
+{1,},{i,},{j,},{k,},{1+1,},{1+i,},{1+j,},{1+k,},{i+1,},{i+i,},{i+j,},{i+k,},{j+1,},{j+i,},{j+j,},{j+k,},{k+1,},{k+i,},{k+j,},{k+k,},
+Next Statement: i = 1
 EquivalenceClasses for partition no.1
-{2,},{1,},{z, 1+2,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: read(x)
+{1, i,},{j,},{k,},{1+1, 1+i, i+1, i+i,},{1+j, i+j,},{1+k, i+k,},{j+1, j+i,},{j+j,},{j+k,},{k+1, k+i,},{k+j,},{k+k,},
+Next Statement: j = i+ 1
 EquivalenceClasses for partition no.2
-{2,},{1,},{z, 1+2,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: if(x < z) jump l1
+{1, i,},{j, 1+1, 1+i, i+1, i+i,},{k,},{1+j, i+j,},{1+k, i+k,},{j+1, j+i,},{j+j,},{j+k,},{k+1, k+i,},{k+j,},{k+k,},
+Next Statement: j=1
 EquivalenceClasses for partition no.3
-{2,},{1,},{z, 1+2,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: y= z + 2
+{1, i, j,},{k,},{1+1, 1+i, 1+j, i+1, i+i, i+j, j+1, j+i, j+j,},{1+k, i+k, j+k,},{k+1, k+i, k+j,},{k+k,},
+Next Statement: j = 1+ i
 EquivalenceClasses for partition no.4
-{2,},{1,},{z, 1+2,},{x,},{y, z+2,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: jump exit
+{1, i,},{j, 1+1, 1+i, i+1, i+i,},{k,},{1+j, i+j,},{1+k, i+k,},{j+1, j+i,},{j+j,},{j+k,},{k+1, k+i,},{k+j,},{k+k,},
+Next Statement: j=1+1
 EquivalenceClasses for partition no.5
-{2,},{1,},{z, 1+2,},{x,},{y, z+2,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: l1
+{1, i,},{j, 1+1, 1+i, i+1, i+i,},{k,},{1+j, i+j,},{1+k, i+k,},{j+1, j+i,},{j+j,},{j+k,},{k+1, k+i,},{k+j,},{k+k,},
+Next Statement: k = 1
 EquivalenceClasses for partition no.6
-{2,},{1,},{z, 1+2,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: y=x+1
+{1, i, k,},{j, 1+1, 1+i, 1+k, i+1, i+i, i+k, k+1, k+i, k+k,},{1+j, i+j, k+j,},{j+1, j+i, j+k,},{j+j,},
+Next Statement: read(i)
 EquivalenceClasses for partition no.7
-{2,},{1,},{z, 1+2,},{x,},{y, x+1,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
-Next Statement: exit
+{1, k,},{i,},{j, 1+1, 1+k, k+1, k+k,},{1+i, k+i,},{1+j, k+j,},{i+1, i+k,},{i+i,},{i+j,},{j+1, j+k,},{j+i,},{j+j,},
+Next Statement: j = 1 + 1
 EquivalenceClasses for partition no.8
-{2,},{1,},{z, 1+2,},{x,},{y,},{2+2,},{2+1,},{2+z,},{2+x,},{2+y,},{1+1,},{1+z,},{1+x,},{1+y,},{z+2,},{z+1,},{z+z,},{z+x,},{z+y,},{x+2,},{x+1,},{x+z,},{x+x,},{x+y,},{y+2,},{y+1,},{y+z,},{y+x,},{y+y,},
+{1, k,},{i,},{j, 1+1, 1+k, k+1, k+k,},{1+i, k+i,},{1+j, k+j,},{i+1, i+k,},{i+i,},{i+j,},{j+1, j+k,},{j+i,},{j+j,},
 End of iteration. ConvergenceFlag: true
 
 
 Available Expression at different program points:
 Available Expression after partition no. 0
 
-Next Statement: z=1+2
+Next Statement: i = 1
 Available Expression after partition no. 1
-{1+2}, 
-Next Statement: read(x)
+
+Next Statement: j = i+ 1
 Available Expression after partition no. 2
-{1+2}, 
-Next Statement: if(x < z) jump l1
+{i+1}, 
+Next Statement: j=1
 Available Expression after partition no. 3
-{1+2}, 
-Next Statement: y= z + 2
+{i+1}, 
+Next Statement: j = 1+ i
 Available Expression after partition no. 4
-{1+2}, {z+2}, 
-Next Statement: jump exit
+{i+1}, {1+i}, 
+Next Statement: j=1+1
 Available Expression after partition no. 5
-{1+2}, {z+2}, 
-Next Statement: l1
+{i+1}, {1+i}, {1+1}, 
+Next Statement: k = 1
 Available Expression after partition no. 6
-{1+2}, 
-Next Statement: y=x+1
+{i+1}, {1+i}, {1+1}, 
+Next Statement: read(i)
 Available Expression after partition no. 7
-{1+2}, {x+1}, 
-Next Statement: exit
+{1+1}, 
+Next Statement: j = 1 + 1
 Available Expression after partition no. 8
-{1+2}, 
+{1+1}, 
 End of iteration. ConvergenceFlag: false
 				~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~				
 Available Expression after partition no. 0
 
-Next Statement: z=1+2
+Next Statement: i = 1
 Available Expression after partition no. 1
-{1+2}, 
-Next Statement: read(x)
+
+Next Statement: j = i+ 1
 Available Expression after partition no. 2
-{1+2}, 
-Next Statement: if(x < z) jump l1
+{i+1}, 
+Next Statement: j=1
 Available Expression after partition no. 3
-{1+2}, 
-Next Statement: y= z + 2
+{i+1}, 
+Next Statement: j = 1+ i
 Available Expression after partition no. 4
-{1+2}, {z+2}, 
-Next Statement: jump exit
+{i+1}, {1+i}, 
+Next Statement: j=1+1
 Available Expression after partition no. 5
-{1+2}, {z+2}, 
-Next Statement: l1
+{i+1}, {1+i}, {1+1}, 
+Next Statement: k = 1
 Available Expression after partition no. 6
-{1+2}, 
-Next Statement: y=x+1
+{i+1}, {1+i}, {1+1}, 
+Next Statement: read(i)
 Available Expression after partition no. 7
-{1+2}, {x+1}, 
-Next Statement: exit
+{1+1}, 
+Next Statement: j = 1 + 1
 Available Expression after partition no. 8
-{1+2}, 
+{1+1}, 
 End of iteration. ConvergenceFlag: true
 Modified resultant program is:
-z=1+2;
-read(x);
-if(x < z) jump l1;
-y=z + 2;
-jump exit;
-l1: y=x+1;
-exit: 
+{1+i} at line number 3 is already computed as {i+1} = _V5
+i = 1;
+j =i+ 1;
+_V5=j;
+j=1;
+j =_V5;
+k = 1;
+read(i);
+

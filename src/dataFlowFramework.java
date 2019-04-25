@@ -111,19 +111,36 @@ public class dataFlowFramework
 				}
 			}
 		}
-		String outputString = "Entered Program after preprocessing:\n";
+		StringBuffer outputString = new StringBuffer();
+		outputString = outputString.append("Entered Program after preprocessing:\n");
+		outputString.append(String.format("%-20s %s%n", "Line Number", "Statement"));
+		outputString=outputString.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+//		logger.info("Entered Program after preprocessing:");
+		//System.out.println("Entered program after preprocessing:");
         for(int i=0;i<this.statements.size();i++)
         {
-        	outputString = outputString + (i)+". "+this.statements.get(i) +"\n";
+        	
+        	outputString = outputString.append(String.format("%-20d %s%n",i+1 ,this.statements.get(i)));
+//        	logger.info((i)+". "+this.statements.get(i));
+            //System.out.println((i)+". "+this.statements.get(i));
         }
+		outputString=outputString.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
         logger.info(outputString);
-        outputString = "Label Dictionary with line no.:\n";
+        outputString.delete(0, outputString.length());
+        outputString = outputString.append("\n\nLabel Dictionary with line number:\n");
+		outputString.append(String.format("%-20s %s%n", "Line Number", "Label Name"));
+		outputString=outputString.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+//		System.out.println("Label Dictionary with line no.:");
 		for(int i=0;i<this.labelLineNumberDict.size();i++)
         {
-			outputString = outputString + this.labelLineNumberDict.get(i).label + " at " + this.labelLineNumberDict.get(i).lineNum+"\n";
-		}
-        logger.info(outputString);
+        	outputString = outputString.append(String.format("%-20d %s%n", this.labelLineNumberDict.get(i).lineNum +1,this.labelLineNumberDict.get(i).label));
+//			logger.info(this.labelLineNumberDict.get(i).label + " at " + this.labelLineNumberDict.get(i).lineNum);
+//            System.out.println(this.labelLineNumberDict.get(i).label + " at " + this.labelLineNumberDict.get(i).lineNum);
+        }
+		outputString=outputString.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 
+        logger.info(outputString);
+        
 		for(int i = 0; i < this.statements.size();i++)
 		{
 			String regex = "jump\\s+\\S+";
@@ -157,30 +174,53 @@ public class dataFlowFramework
 		{
 			for(int j = 0; j < this.successorGraph.get(i).size(); j++)
 			{
+//				System.out.println(this.successorGraph.get(i).get(j));
 				this.predecessorGraph.get(this.successorGraph.get(i).get(j)).add(i);
 			}
 		}
-		outputString="successorGraph:\n";
+//		logger.info("successorGraph:");
+//		System.out.println("successorGraph:");
+//		outputString="successorGraph:\n";
 		for(int i = 0; i < this.successorGraph.size(); i++)
 		{
-			outputString=outputString + i +". ";
+//			outputString=outputString + i +". ";
+//			System.out.print(i+". ");
 			for(int j = 0; j < this.successorGraph.get(i).size(); j++)
 			{
-				outputString = outputString + this.successorGraph.get(i).get(j)+" ";
+//				outputString = outputString + this.successorGraph.get(i).get(j)+" ";
+//				System.out.print(this.successorGraph.get(i).get(j)+" ");
 			}
-			outputString=outputString+"\n";
+//			outputString=outputString+"\n";
+//			System.out.println();
 		}
-		logger.info(outputString);
-		outputString="PredecessorGraph:\n";
+//		logger.info(outputString);
+//		logger.info("PredecessorGraph:");
+//		System.out.println("PredecessorGraph:");
+		outputString.delete(0, outputString.length());
+        outputString = outputString.append("\n\nPredecessorGraph:\n");
+		outputString.append(String.format("%-20s %s%n", "Line Number", "Predecessors Line Number"));
+		outputString=outputString.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 		for(int i = 0; i < this.predecessorGraph.size(); i++)
 		{
-			outputString = outputString + i +". ";
+			int output = i+1;
+			String tempOutputString = "";
+//			outputString = outputString + i +". ";
+//			System.out.print(i+". ");
 			for(int j = 0; j < this.predecessorGraph.get(i).size(); j++)
 			{
-				outputString=outputString + this.predecessorGraph.get(i).get(j)+" ";
+				tempOutputString= tempOutputString + (this.predecessorGraph.get(i).get(j)+1)+" ";
+//				outputString=outputString + this.predecessorGraph.get(i).get(j)+" ";
+//				System.out.print(this.predecessorGraph.get(i).get(j)+" ");
 			}
-			outputString=outputString+"\n";
+			if(tempOutputString.equals(""))
+			{
+				tempOutputString = "null";
+			}
+        	outputString = outputString.append(String.format("%-20d %s%n",output,tempOutputString));
+//			outputString=outputString+"\n";
+//			System.out.println();
 		}
+		outputString=outputString.append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 		logger.info(outputString);
 	}
 }

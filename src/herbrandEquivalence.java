@@ -1038,13 +1038,12 @@ public class herbrandEquivalence extends dataFlowFramework
 								redundantExpressionfileWriter.write(String.format("%-20d %-30s %-30s %d\n", (i+1),operand1+this.operators.get(operatorIndex)+operand2,this.availableExpression.get(predIndexNum+1).get(j),this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 								if(equivalentClass.get(0) < this.listofVariableUConstant.size())
 								{
-									System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ this.listofVariableUConstant.get(equivalentClass.get(0)) +" ");//+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
-									if(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")).trim().equals(this.listofVariableUConstant.get(equivalentClass.get(0))))
-									{
-										break;
-									}
-									outputString.append(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")+1));
-									outputString.append(this.listofVariableUConstant.get(equivalentClass.get(0)) + ";\n");
+                               if(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")).trim().equals(this.listofVariableUConstant.get(equivalentClass.get(0))))
+								{
+									break;
+								}
+								outputString.append(super.statements.get(i).substring(0,super.statements.get(i).indexOf("=")+1));
+								outputString.append(this.listofVariableUConstant.get(equivalentClass.get(0)) + ";\n");
 								}
 								else 
 								{
@@ -1057,11 +1056,11 @@ public class herbrandEquivalence extends dataFlowFramework
 									}
 									String tempString1 = outputString.substring(0,insertionIndexPosition+1);
 									String tempString2 = outputString.substring(insertionIndexPosition+1,outputString.length());
-									String statementToInsert = "\n"+prefixString+ referredPartition.get(availableExpressionIndexPosition).termValueNum +"=" +super.statements.get(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum).substring(super.statements.get(i).indexOf("=")+1,super.statements.get(i).length()).trim()+";";
+									//String statementToInsert = "\n"+prefixString+ referredPartition.get(availableExpressionIndexPosition).termValueNum +"=" +super.statements.get(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum).substring(super.statements.get(i).indexOf("=")+1,super.statements.get(i).length()).trim()+";";
+									String statementToInsert = "\n"+prefixString+ referredPartition.get(availableExpressionIndexPosition).termValueNum +"=" +super.statements.get(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum).substring(0,super.statements.get(i).indexOf("=")).trim()+";";
 									outputString = new StringBuffer();
 									outputString.append(tempString1+statementToInsert+tempString2);
 									outputString.append(prefixString+ referredPartition.get(availableExpressionIndexPosition).termValueNum + ";\n");
-									System.out.println("{"+operand1+this.operators.get(operatorIndex)+operand2+"} is replaced by valueNum "+ referredPartition.get(availableExpressionIndexPosition).termValueNum +" "+(this.availableExpression.get(predIndexNum+1).get(j).lineIndexNum+1));
 									
 								}
 								logger.info("{"+operand1+this.operators.get(operatorIndex)+operand2+"} at line number "+ i+" is already computed as {"+this.availableExpression.get(predIndexNum+1).get(j)+"} = " + prefixString+ referredPartition.get(availableExpressionIndexPosition).termValueNum);
