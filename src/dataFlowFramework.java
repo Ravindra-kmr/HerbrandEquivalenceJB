@@ -5,14 +5,15 @@ import java.io.FileReader;
 import java.util.*;
 import java.util.regex.*;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 /**
  * Class which create dataflow Framework of given program. 
  * It computes predecessor and successor of each statement.
  */
 public class dataFlowFramework
 {
-	protected Logger logger = Logger.getLogger(dataFlowFramework.class);
+	protected Logger logger = LogManager.getLogger(dataFlowFramework.class);
 	public ArrayList<String> statements;
 	public ArrayList<ArrayList<Integer>> successorGraph;	
 	public ArrayList<ArrayList<Integer>> predecessorGraph;

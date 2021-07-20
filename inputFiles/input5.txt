@@ -1,9 +1,0 @@
-read(x);
-l2:
-if() jump l1;
-y=x+2;
-jump exit;
-l1: y=x*1;
-exit: x = y;
-if() jump l2;
-z = x+y;

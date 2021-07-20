@@ -1,8 +1,0 @@
-x = 1;
-y =1 + 1;
-z =x + y;
-s =z;
-loop: t =x + 1;
-x = t;
-jump loop;
-w = x;

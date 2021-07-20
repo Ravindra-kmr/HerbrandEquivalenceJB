@@ -5,8 +5,8 @@ import java.util.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 //This class compute Herbrand equivalence and remove the redundant expression from the program.
 public class herbrandEquivalence extends dataFlowFramework
@@ -280,7 +280,9 @@ public class herbrandEquivalence extends dataFlowFramework
 			{
 				ArrayList<termID> oldPartition;
 				if(this.partitions.get(i).isEmpty())
+				{
 					oldPartition = this.partitions.get(0);
+				}
 				else
 					oldPartition = this.partitions.get(i);
 				if(super.predecessorGraph.get(i-1).size()>1)
@@ -629,11 +631,9 @@ public class herbrandEquivalence extends dataFlowFramework
 						int termNum = -1;
 						for(int l = 0; l < result.size(); l++)
 						{
-							if(result.get(l).fieldType == opType && Objects.equals(result.get(l).leftOperand.toString(), result.get(j).toString()) && Objects.equals(result.get(l).rightOperand.toString(), result.get(k).toString()))
-							{
-								termNum = result.get(l).termValueNum;
+							termNum = findTermValueNumber(result.get(l),opType,result.get(j).toString().trim(),result.get(k).toString().trim());
+							if(termNum!=-1)
 								break;
-							}
 						}
 						if(termNum == -1)
 							termNum = increaseTermCounter();
@@ -645,10 +645,32 @@ public class herbrandEquivalence extends dataFlowFramework
 		logger.debug("Exiting the assignmentStatement() function.");
 		return result;
 	}
+	public int findTermValueNumber(termID temp,int opType,String left,String right)
+	{
+		if(temp.fieldType == opType && Objects.equals(temp.leftOperand.toString().trim(), left) && Objects.equals(temp.rightOperand.toString().trim(), right))
+		{
+			return(temp.termValueNum);
+		}
+		else if(temp.leftOperand!=null)
+		{
+			return(findTermValueNumber(temp.leftOperand,opType,left,right));
+		}
+		else if(temp.rightOperand!=null)
+		{
+			return(findTermValueNumber(temp.rightOperand,opType,left,right));
+		}
+		else
+		{
+			return(-1);
+		}
+	}
 	public boolean isSame(ArrayList<termID> p, ArrayList<termID> q)
 	{
 		if(p.isEmpty() || q.isEmpty())
+		{
+			System.out.println("Line 677 cause false.");
 			return false;
+		}
 		for(int i = 0; i < this.numClass; i++)
 		{
 			ArrayList<Integer> equivalenceClass1 = new ArrayList<Integer>();
@@ -659,9 +681,6 @@ public class herbrandEquivalence extends dataFlowFramework
 				{
 					equivalenceClass1.add(j);
 				}
-			}
-			for(int j = 0; j < this.numClass ; j++)
-			{
 				if(q.get(i).toString().equals(q.get(j).toString()))
 				{
 					equivalenceClass2.add(j);
@@ -673,7 +692,7 @@ public class herbrandEquivalence extends dataFlowFramework
 			}
 			for(int j = 0; j < equivalenceClass1.size(); j++)
 			{
-				if(!(equivalenceClass1.get(j) == equivalenceClass2.get(j)))
+				if(!(equivalenceClass1.get(j).equals(equivalenceClass2.get(j))))
 				{
 					return false;
 				}
@@ -1111,11 +1130,10 @@ public class herbrandEquivalence extends dataFlowFramework
 		{
 			if(file.isFile())
 			{
-
 				System.out.println("Now Processing: "+file.getAbsolutePath());
 				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 				herbrandEquivalence herbrandEquivalenceObj = new herbrandEquivalence();
-				PropertyConfigurator.configure("log4j.properties");
+				//PropertyConfigurator.configure("log4j.properties");
 	        	logger.info("Starting to read the file:"+ file.getName());
 	            herbrandEquivalenceObj.readFile(file.getAbsolutePath());
 	            logger.debug("Read the file successfully.");
@@ -1144,7 +1162,7 @@ public class herbrandEquivalence extends dataFlowFramework
 		}
 	}
 
-	static Logger logger = Logger.getLogger(herbrandEquivalence.class);
+	static Logger logger = LogManager.getLogger(herbrandEquivalence.class);
 	public static void main(String[] args)  
 	{
 		final File inputFolder = new File("../inputFiles");

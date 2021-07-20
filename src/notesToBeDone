@@ -1,0 +1,8 @@
+1. Don't assign value number for terms (in assignment statment like p=q+1, we put p in same class as q+1 which is true but we put all terms containing p to a new class which is wrong, search for any variableOrConstant which is same as term containing p and assign its class) in increasing order but search recursively to find the value number.
+ 
+2. Should we search in only variableUConstant or all terms in the list.
+
+3. check for this one
+p=1+3;
+q=1+3;
+I think the program will be able to find p and q in same class but all terms containing p or q will not be in same class. like p+1 and q+1 should be in same class but program will not print so.

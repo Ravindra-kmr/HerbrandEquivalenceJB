@@ -12,15 +12,15 @@ This repository is the implementation of algorithm given in **A fix-point charac
     - Download apache-log4j-x.x.x.tar.gz from the specified site.
     - Unzip and untar the downloaded file in /usr/local/ directory as follows:
         ```sh
-        $ gunzip apache-log4j-1.2.17.tar.gz
-        $ tar -xvf apache-log4j-1.2.17.tar
+        $ gunzip apache-log4j-2.12.1-bin.tar.gz
+        $ tar -xvf apache-log4j-2.12.1-bin.tar
         ```
     - Now set the PATH and CLASSPATH appropriately.
         ```sh
         $ pwd
-        /usr/local/apache-log4j-1.2.17
-        $ export CLASSPATH=$CLASSPATH:/usr/local/apache-log4j-1.2.17/log4j-1.2.17.jar
-        $ export PATH=$PATH:/usr/local/apache-log4j-1.2.17/
+        /usr/local/apache-log4j-2.12.1-bin
+        $ export CLASSPATH=$CLASSPATH:apache-log4j-2.12.1-bin/log4j-core-2.12.1.jar
+        $ export PATH=$PATH:/usr/local/apache-log4j-2.12.1-bin
         ```
 
 ## How to use
